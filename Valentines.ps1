@@ -64,7 +64,7 @@ dXd;,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,;xXd
   $to = "To: $env:USERNAME"
   $from = "From: Steven"
 
-  $inBetweenDelay = 500
+  $inBetweenDelay = 1250
 
   Clear-Host
   Write-WithDelay $heart
@@ -77,6 +77,7 @@ dXd;,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,;xXd
   Start-Sleep -Milliseconds $inBetweenDelay
   Write-WithDelay $styledMessage
 
+  Read-Host
 }
 
 function Write-WithDelay {
@@ -92,7 +93,7 @@ function Write-WithDelay {
     $split = $multiLineString -split "`n"
   }
 
-  $delayBetweenLines = 200
+  $delayBetweenLines = 100
 
   ForEach ($line in $split) {
     Start-Sleep -Milliseconds $delayBetweenLines
