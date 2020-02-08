@@ -1,4 +1,5 @@
-﻿$heart = @"
+﻿function Get-ValentinesGreeting {
+  $heart = @"
        .;oOKNWWWNKOo,.           .,oOKNWWWNKOo;.       
      ,ok0OkxdooodxkO0kl'       'lk0OkxdooodxkO0ko,     
   .;kKOoc;,,,,,',,,;cdOKx;   ;xKOdc;,,,,',,,,;coOKk;   
@@ -27,7 +28,7 @@ dXd;,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,;xXd
                          ;KMK;                         
 "@
 
-$styledMessage = @"
+  $styledMessage = @"
     __  __                                          
    / / / /___ _____  ____  __  __                   
   / /_/ / __ '/ __ \/ __ \/ / / /                   
@@ -50,19 +51,55 @@ $styledMessage = @"
                             /____/                  
 "@
 
-$greetingList = `
-"You really make my hard drives whir.", `
-"You have hacked my heart.", `
-"My code always compiles when I'm with you.", `
-"I like you more than a new All Flash Nimble Array.", `
-"I want to share my private encryption key with you.", `
-"Let's open a joint cryptocurrency wallet."
+  $greetingList = `
+    "You really make my hard drives whir.", `
+    "You have hacked my heart.", `
+    "My code always compiles when I'm with you.", `
+    "I like you more than a new All Flash Nimble Array.", `
+    "I want to share my private encryption key with you.", `
+    "Let's open a joint cryptocurrency wallet."
 
-$randomGreeting = $greetingList | Get-Random
+  $randomGreeting = "Romantic Valentine's Greeting: $($greetingList | Get-Random)"
 
-$to = $env:USERNAME
-$from = "Steven"
+  $to = "To: $env:USERNAME"
+  $from = "From: Steven"
 
-function Get-ValentinesGreeting {
-    
+  $inBetweenDelay = 500
+
+  Clear-Host
+  Write-WithDelay $heart
+  Start-Sleep -Milliseconds $inBetweenDelay
+  Write-WithDelay $to
+  Start-Sleep -Milliseconds $inBetweenDelay
+  Write-WithDelay $from
+  Start-Sleep -Milliseconds $inBetweenDelay
+  Write-WithDelay $randomGreeting
+  Start-Sleep -Milliseconds $inBetweenDelay
+  Write-WithDelay $styledMessage
+
 }
+
+function Write-WithDelay {
+  Param(
+    [Parameter(Mandatory = $true,
+      ValueFromPipeline = $true)]
+    [String[]]
+    $multiLineString
+  )
+
+  $delayBetweenLines = 200
+
+  ForEach ($line in $($multiLineString -split "`r`n")) {
+    Start-Sleep -Milliseconds $delayBetweenLines
+    Write-Output $line
+  }
+  Start-Sleep -Milliseconds $delayBetweenLines
+  Write-Output ""
+}
+
+function Get-RandomStyledValentinesMessage {
+  
+}
+
+Write-Output "Get-ValentinesGreeting`n"
+Get-ValentinesGreeting
