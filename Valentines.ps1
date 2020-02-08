@@ -74,7 +74,7 @@ dXd;,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,;xXd
   Write-WithDelay $from
   Start-Sleep -Milliseconds $inBetweenDelay
   Write-WithDelay $randomGreeting
-  Start-Sleep -Milliseconds $inBetweenDelay
+  Start-Sleep -Milliseconds ($inBetweenDelay + 1000)
   Write-WithDelay $styledMessage
 
   Read-Host
@@ -93,7 +93,7 @@ function Write-WithDelay {
     $split = $multiLineString -split "`n"
   }
 
-  $delayBetweenLines = 100
+  $delayBetweenLines = 60
 
   ForEach ($line in $split) {
     Start-Sleep -Milliseconds $delayBetweenLines
