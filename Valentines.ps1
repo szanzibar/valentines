@@ -97,9 +97,5 @@ function Write-WithDelay {
   Write-Output ""
 }
 
-function Get-RandomStyledValentinesMessage {
-  
-}
-
 Write-Output "Get-ValentinesGreeting`n"
 Get-ValentinesGreeting
