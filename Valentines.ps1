@@ -87,9 +87,14 @@ function Write-WithDelay {
     $multiLineString
   )
 
+  $split = $multiLineString -split "`r`n"
+  if ($split.Length -eq 1) {
+    $split = $multiLineString -split "`n"
+  }
+
   $delayBetweenLines = 200
 
-  ForEach ($line in $($multiLineString -split "`r`n")) {
+  ForEach ($line in $split) {
     Start-Sleep -Milliseconds $delayBetweenLines
     Write-Output $line
   }
